@@ -1,4 +1,13 @@
 Tumblelog::Application.routes.draw do
+  
+  namespace :admin do
+    get "users/new"
+
+    get "users/show"
+
+    get "users/index"
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

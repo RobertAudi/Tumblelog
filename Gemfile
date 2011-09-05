@@ -18,7 +18,7 @@ group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'guard', :git => 'git://github.com/guard/guard.git'
   gem 'guard-rspec', '0.4.3'
-  gem 'guard-annotate'
+  gem 'guard-annotate', '0.4.0'
   gem 'guard-livereload', '0.3.1'
   gem 'yajl-ruby', '0.8.3'
   gem 'rb-fsevent', '0.4.3.1'
@@ -28,4 +28,5 @@ end
 group :test do
   gem 'rspec-rails', "2.6.1"
   gem 'webrat', '0.7.3'
+  gem 'factory_girl_rails', '1.2.0'
 end

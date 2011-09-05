@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tumblelog</title>
+  <title><%= title %></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -10,5 +10,6 @@
 
 <%= yield %>
 
+<%= debug params if Rails.env.development? %>
 </body>
 </html>

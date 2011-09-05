@@ -64,6 +64,10 @@ GEM
     eventmachine (0.12.10)
     execjs (1.2.4)
       multi_json (~> 1.0)
+    factory_girl (2.1.0)
+    factory_girl_rails (1.2.0)
+      factory_girl (~> 2.1.0)
+      railties (>= 3.0.0)
     growl_notify (0.0.1)
       rb-appscript
     guard-annotate (0.4.0)
@@ -172,9 +176,10 @@ PLATFORMS
 DEPENDENCIES
   annotate!
   coffee-rails (~> 3.1.0)
+  factory_girl_rails (= 1.2.0)
   growl_notify (= 0.0.1)
   guard!
-  guard-annotate
+  guard-annotate (= 0.4.0)
   guard-livereload (= 0.3.1)
   guard-rspec (= 0.4.3)
   jquery-rails (= 1.0.13)
