@@ -35,9 +35,12 @@ describe Admin::UsersController do
       response.should render_template('show')
     end
     
-    # it "should have the right title"
     it "should have the right title" do
       response.should have_selector('title', :content => @user.username)
+    end
+
+    it "should find the right user" do
+      assigns[:user].should == @user
     end
   end
 
@@ -58,5 +61,4 @@ describe Admin::UsersController do
       response.should have_selector('title', :content => "Home")
     end
   end
-
 end

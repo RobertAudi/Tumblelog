@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
-    @title = "#{@user.username}"
+    @title = @user.username
   end
 
   def new
