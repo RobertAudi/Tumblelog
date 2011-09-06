@@ -19,8 +19,6 @@ group :development do
   gem 'guard', :git => 'git://github.com/guard/guard.git'
   gem 'guard-rspec', '0.4.3'
   gem 'guard-annotate', '0.4.0'
-  gem 'guard-livereload', '0.3.1'
-  gem 'yajl-ruby', '0.8.3'
   gem 'rb-fsevent', '0.4.3.1'
   gem 'growl_notify', '0.0.1'
 end
