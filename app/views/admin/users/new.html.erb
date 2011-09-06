@@ -1,4 +1,5 @@
 <%= form_for @user, :url => admin_users_path do |f| %>
+  <%= render 'error_messages' %>
   <div class="field">
     <p><%= f.label :username %></p>
     <p><%= f.text_field :username %></p>
