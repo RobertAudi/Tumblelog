@@ -21,6 +21,8 @@ group :development do
   gem 'guard-annotate', '0.4.0'
   gem 'rb-fsevent', '0.4.3.1'
   gem 'growl_notify', '0.0.1'
+  gem 'powder', '0.1.6'
+  gem 'fuubar', '0.0.6'
 end
 
 group :test do
