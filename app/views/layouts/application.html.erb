@@ -2,9 +2,8 @@
 <html>
 <head>
   <title><%= title %></title>
-  <%= stylesheet_link_tag "blueprint/screen" %>
+  <%= stylesheet_link_tag "application", "blueprint/screen" %>
   <%= stylesheet_link_tag "blueprint/print", :media => "print" %>
-  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -18,7 +17,7 @@
 
     <%= yield %>
 
+    <%= debug params if Rails.env.development? %>
   </div>
-<%= debug params if Rails.env.development? %>
 </body>
 </html>
