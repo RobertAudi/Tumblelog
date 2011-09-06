@@ -1,2 +1,23 @@
-<h1>Admin::Users#new</h1>
-<p>Find me in app/views/admin/users/new.html.erb</p>
+<%= form_for @user, :url => admin_users_path do |f| %>
+  <div class="field">
+    <p><%= f.label :username %></p>
+    <p><%= f.text_field :username %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :email %></p>
+    <p><%= f.text_field :email %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :password %></p>
+    <p><%= f.text_field :password %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :password_confirmation %></p>
+    <p><%= f.text_field :password_confirmation %></p>
+  </div>
+
+  <p class="button"><%= f.submit "Submit" %></p>
+<% end %>

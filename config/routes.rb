@@ -1,5 +1,5 @@
 Tumblelog::Application.routes.draw do
-  
+
   namespace :admin do
     resources :users
   end
