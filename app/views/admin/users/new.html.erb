@@ -1,24 +1,5 @@
+<h1><%= @title %></h1>
+
 <%= form_for @user, :url => admin_users_path do |f| %>
-  <%= render 'error_messages' %>
-  <div class="field">
-    <p><%= f.label :username %></p>
-    <p><%= f.text_field :username %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.text_field :email %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :password %></p>
-    <p><%= f.password_field :password %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :password_confirmation %></p>
-    <p><%= f.password_field :password_confirmation %></p>
-  </div>
-
-  <p class="button"><%= f.submit "Submit" %></p>
+  <%= render 'form', :f => f %>
 <% end %>

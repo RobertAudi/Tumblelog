@@ -1,0 +1,25 @@
+<%= render 'error_messages' %>
+
+<% if @user.new_record? %>
+<div class="field">
+  <p><%= f.label :username %></p>
+  <p><%= f.text_field :username %></p>
+</div>
+
+<div class="field">
+  <p><%= f.label :email %></p>
+  <p><%= f.text_field :email %></p>
+</div>
+<% end %>
+
+<div class="field">
+  <p><%= f.label :password %></p>
+  <p><%= f.password_field :password %></p>
+</div>
+
+<div class="field">
+  <p><%= f.label :password_confirmation %></p>
+  <p><%= f.password_field :password_confirmation %></p>
+</div>
+
+<p class="button"><%= f.submit "Submit" %></p>
