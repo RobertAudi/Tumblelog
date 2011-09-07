@@ -23,6 +23,7 @@ group :development do
   gem 'growl_notify', '0.0.1'
   gem 'powder', '0.1.6'
   gem 'fuubar', '0.0.6'
+  gem 'faker', '0.9.5'
 end
 
 group :test do
