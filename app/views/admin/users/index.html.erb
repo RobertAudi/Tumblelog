@@ -3,6 +3,7 @@
 <% if @users.any? %>
 <table class="users" summary="List of users">
   <tr>
+    <th><%# View Link %></th>
     <th>Username</th>
     <th>Email</th>
     <th>Created on</th>
@@ -10,6 +11,7 @@
   </tr>
   <% @users.each do |user| %>
   <tr>
+    <td><%= link_to "View", admin_user_path(user) %></td>
     <td><%= link_to user.username, edit_admin_user_path(user) %></td>
     <td><%= user.email %></td>
     <td><%= user.created_at %></td>
