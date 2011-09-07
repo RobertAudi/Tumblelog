@@ -1,7 +1,8 @@
 class Admin::UsersController < ApplicationController
 
   def index
-    @title = "Home"
+    @title = "Users"
+    @users = User.paginate(:page => params[:page]).order("username ASC")
   end
 
   def show
