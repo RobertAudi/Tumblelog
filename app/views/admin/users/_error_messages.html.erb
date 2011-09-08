@@ -5,7 +5,9 @@
     <p>There were problems with the following fields:</p>
     <ul>
     <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+      <% unless message =~ /password digest/i %>
+        <li><%= message %></li>
+      <% end %>
     <% end %>
     </ul>
   </div>
