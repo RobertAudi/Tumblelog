@@ -14,8 +14,8 @@
     <td><%= link_to "View", admin_post_path(post) %></td>
     <td><%= link_to truncate(post.title), edit_admin_post_path(post) %></td>
     <td><%= truncate(post.body) %></td>
-    <td><%= post.created_at %></td>
-    <td><%= post.updated_at %></td>
+    <td><%= format_date(post.created_at) %></td>
+    <td><%= format_date(post.updated_at) %></td>
   </tr>
   <% end %>
 </table>
