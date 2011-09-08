@@ -29,7 +29,8 @@ class User < ActiveRecord::Base
                      :length => { :within => 8..255 },
                      :format => { :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i }
 
-  validates :password, :length => { :within => 4..255 }
+  validates :password, :presence => true,
+                       :length => { :within => 4..255 }
 
   def generate_token(column)
     begin
