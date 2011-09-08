@@ -11,5 +11,4 @@ class Admin::BaseController < ApplicationController
       redirect_to login_path, :alert => "You must first log in or sign up before accessing this page."
     end
   end
-  
 end

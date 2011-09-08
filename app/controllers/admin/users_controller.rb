@@ -1,5 +1,4 @@
 class Admin::UsersController < Admin::BaseController
-
   def index
     @title = "Users"
     @users = User.paginate(:page => params[:page], :per_page => 15).order("username ASC")
@@ -43,8 +42,5 @@ class Admin::UsersController < Admin::BaseController
       @title = "Editing #{@user.username}..."
       render 'edit'
     end
-    
   end
-  
-
 end
