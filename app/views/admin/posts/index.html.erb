@@ -1,2 +1,24 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<h1><%= @title %></h1>
+
+<% if @posts.any? %>
+<table class="posts" summary="List of posts">
+  <tr>
+    <th><%# View Link %></th>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Created on:</th>
+    <th>Updated on:</th>
+  </tr>
+  <% @posts.each do |post| %>
+  <tr>
+      <td><%= link_to "View", admin_post_path(post) %></td>
+      <td><%= link_to truncate(post.title), edit_admin_post_path(post) %></td>
+      <td><%= truncate(post.body) %></td>
+      <td><%= post.created_at %></td>
+      <td><%= post.updated_at %></td>
+  </tr>
+  <% end %>
+</table>
+<% else %>
+<p>There are no posts yet.</p>
+<% end %>

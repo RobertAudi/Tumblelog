@@ -18,6 +18,37 @@ describe Admin::PostsController do
     end
   end
   
+  describe "GET 'index'" do
+    before(:each) do
+      test_log_in(Factory(:user))
+      get 'index'
+    end
+    
+    it "should be successful" do
+      response.should be_success
+    end
+    
+    it "should render the 'index' template" do
+      response.should render_template('index')
+    end
+    
+    it "should have the right title" do
+      response.should have_selector('title', :content => "Posts")
+    end
+    
+    it "should list posts" do
+      30.times do
+        Factory(:post, :title => Factory.next(:title), :body => Factory.next(:body))
+      end
+      
+      get 'index'
+      
+      Post.paginate(:page => 1).order("created_at DESC").each do |post|
+        response.should have_selector("tr>td>a", :content => post.title, :href => edit_admin_post_path(post))
+      end
+    end
+  end
+  
   describe "GET 'new'" do
     before(:each) do
       test_log_in(Factory(:user))

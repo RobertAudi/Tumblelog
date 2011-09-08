@@ -2,6 +2,8 @@ class Admin::PostsController < ApplicationController
   before_filter :login_required
   
   def index
+    @posts = Post.paginate(:page => params[:page]).order("created_at DESC")
+    @title = "Posts"
   end
 
   def new
