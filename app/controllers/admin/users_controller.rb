@@ -1,6 +1,4 @@
-class Admin::UsersController < ApplicationController
-
-  before_filter :login_required
+class Admin::UsersController < Admin::BaseController
 
   def index
     @title = "Users"
