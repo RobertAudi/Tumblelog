@@ -8,10 +8,14 @@
 #  password_digest :string(255)
 #  created_at      :datetime
 #  updated_at      :datetime
+#  auth_token      :string(255)
 #
 
 class User < ActiveRecord::Base
+  attr_accessible :username, :email, :password, :password_confirmation
   has_secure_password
+  
+  before_create { generate_token(:auth_token) }
   
   # Validations
   validates :username, :presence => true,
@@ -26,4 +30,11 @@ class User < ActiveRecord::Base
                      :format => { :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i }
 
   validates :password, :length => { :within => 4..255 }
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+  
 end

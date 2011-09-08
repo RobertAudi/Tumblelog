@@ -11,6 +11,10 @@ describe User do
     }
   end
 
+  it "can generate auth tokens" do
+    User.method_defined?(:generate_token).should be_true
+  end
+
   describe "Validations" do
     describe "name" do
       it "should require a name" do

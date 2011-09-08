@@ -2,6 +2,15 @@ require 'spec_helper'
 
 describe Admin::UsersController do
   render_views
+  
+  before(:each) do
+    test_log_in(Factory(:user,
+                          :username => "user2",
+                          :email => "user2@example.com",
+                          :password => "admin",
+                          :password_confirmation => "admin",))
+  end
+  
 
   describe "GET 'new'" do
     before(:each) do

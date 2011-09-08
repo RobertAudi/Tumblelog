@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
 
+  before_filter :login_required
+
   def index
     @title = "Users"
     @users = User.paginate(:page => params[:page]).order("username ASC")

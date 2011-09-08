@@ -1,6 +1,13 @@
 Tumblelog::Application.routes.draw do
 
+  resources :sessions, :only => [:new, :create, :destroy]
+  
+  match '/login' => 'sessions#new'
+  match '/logout' => 'sessions#destroy'
+  
+  match "/admin/dashboard" => 'admin/dashboard#index', :as => "dashboard"
   namespace :admin do
+    get "dashboard/index"
     resources :users
   end
 

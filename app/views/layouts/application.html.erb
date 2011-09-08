@@ -12,7 +12,14 @@
     <section>
     <nav>
       <p class="left"><%= link_to "Visit your site", '#' %></p>
-      <p class="right">Logged in as <%= link_to "User", '#' %></p>
+      <p class="right">
+        <% if logged_in? %>
+          Logged in as <%= link_to current_user.username, admin_user_path(current_user) %> |
+          <%= link_to "Log out", logout_path %>
+        <% else %>
+            <%= link_to "Log in", login_path %>
+        <% end %>
+      </p>
     </nav>
     </section>
   </header>
