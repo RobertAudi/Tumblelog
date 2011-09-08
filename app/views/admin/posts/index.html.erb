@@ -11,14 +11,16 @@
   </tr>
   <% @posts.each do |post| %>
   <tr>
-      <td><%= link_to "View", admin_post_path(post) %></td>
-      <td><%= link_to truncate(post.title), edit_admin_post_path(post) %></td>
-      <td><%= truncate(post.body) %></td>
-      <td><%= post.created_at %></td>
-      <td><%= post.updated_at %></td>
+    <td><%= link_to "View", admin_post_path(post) %></td>
+    <td><%= link_to truncate(post.title), edit_admin_post_path(post) %></td>
+    <td><%= truncate(post.body) %></td>
+    <td><%= post.created_at %></td>
+    <td><%= post.updated_at %></td>
   </tr>
   <% end %>
 </table>
+
+<%= will_paginate @posts %>
 <% else %>
 <p>There are no posts yet.</p>
 <% end %>

@@ -43,7 +43,7 @@ describe Admin::PostsController do
       
       get 'index'
       
-      Post.paginate(:page => 1).order("created_at DESC").each do |post|
+      Post.paginate(:page => 1, :per_page => 15).order("created_at DESC").each do |post|
         response.should have_selector("tr>td>a", :content => post.title, :href => edit_admin_post_path(post))
       end
     end

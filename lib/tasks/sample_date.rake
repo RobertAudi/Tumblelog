@@ -10,6 +10,7 @@ namespace :db do
                  :password => "password",
                  :password_confirmation => "password")
 
+    # Create an admin user
     User.create!(:username => "admin",
                  :email => "admin@example.com",
                  :password => "admin",

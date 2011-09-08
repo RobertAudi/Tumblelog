@@ -160,7 +160,7 @@ describe Admin::UsersController do
       # Here I am testing two things at the same time (but that's not such a big deal):
       # - The presence of the username
       # - The presence and validity of the link
-      User.paginate(:page => 1).order("username ASC").each do |user|
+      User.paginate(:page => 1, :per_page => 15).order("username ASC").each do |user|
         response.should have_selector("tr>td>a", :content => "#{user.username}",
                                                  :href => edit_admin_user_path(user))
       end
