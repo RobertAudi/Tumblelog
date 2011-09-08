@@ -17,6 +17,7 @@ end
 Factory.define :post do |post|
   post.title "This is the title"
   post.body "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+  post.user_id 1
 end
 
 Factory.sequence :title do |n|

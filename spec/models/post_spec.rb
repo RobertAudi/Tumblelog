@@ -4,7 +4,8 @@ describe Post do
   before(:each) do
     @attr = {
       :title => "This is the title",
-      :body  => "This is the body"
+      :body  => "This is the body",
+      :id => 1
     }
   end
   
@@ -24,6 +25,22 @@ describe Post do
     describe "body" do
       it "should require a body" do
         post = Post.new(@attr.merge(:body => ""))
+        post.should_not be_valid
+      end
+    end
+    
+    describe "user_id" do
+      it "should require a user_id" do
+        post = Post.new(@attr.merge(:user_id => nil))
+        post.should_not be_valid
+      end
+      
+      it "should require a valid user_id" do
+        post = Post.new(@attr.merge(:user_id => "forty two"))
+        post.should_not be_valid
+        post = Post.new(@attr.merge(:user_id => 0))
+        post.should_not be_valid
+        post = Post.new(@attr.merge(:user_id => -1))
         post.should_not be_valid
       end
     end

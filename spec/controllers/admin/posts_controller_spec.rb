@@ -101,7 +101,8 @@ describe Admin::PostsController do
       before(:each) do
         @attr = {
           :title => "This is the title",
-          :body => "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          :body => "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          :user_id => 1
         }
         post 'create', :post => @attr
       end

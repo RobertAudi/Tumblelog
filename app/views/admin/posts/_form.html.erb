@@ -9,4 +9,6 @@
   <p><%= f.text_area :body, :size => "20x40" %></p>
 </div>
 
+<%= f.hidden_field :user_id, :value => @post.user_id || current_user.id %>
+
 <p class="button"><%= f.submit "Post", :disable_with => 'Posting...' %></p>
