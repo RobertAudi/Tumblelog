@@ -1,5 +1,4 @@
 Tumblelog::Application.routes.draw do
-
   resources :sessions, :only => [:new, :create, :destroy]
   
   match '/login' => 'sessions#new'
@@ -9,6 +8,8 @@ Tumblelog::Application.routes.draw do
   namespace :admin do
     get "dashboard/index"
     resources :users
+    
+    resources :posts
   end
 
   # The priority is based upon order of creation:
