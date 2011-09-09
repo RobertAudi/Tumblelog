@@ -31,4 +31,5 @@ group :test do
   gem 'rspec-rails', "2.6.1"
   gem 'webrat', '0.7.3'
   gem 'factory_girl_rails', '1.2.0'
+  gem 'simplecov', '>= 0.4.0', :require => false
 end
