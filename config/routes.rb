@@ -7,6 +7,8 @@ Tumblelog::Application.routes.draw do
   match "/admin/dashboard" => 'admin/dashboard#index', :as => "dashboard"
   namespace :admin do
     get "dashboard/index"
+    match "/" => redirect("/admin/dashboard")
+
     resources :users
     
     resources :posts
