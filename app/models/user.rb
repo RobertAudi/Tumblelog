@@ -9,10 +9,11 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  auth_token      :string(255)
+#  admin           :integer
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password, :password_confirmation
+  attr_accessible :username, :email, :password, :password_confirmation, :admin
   has_secure_password
   
   has_many :posts
@@ -27,12 +28,14 @@ class User < ActiveRecord::Base
                                     :message => "should only contain letters, numbers, or underscores" }
 
   validates :email, :presence => true,
-                     :uniqueness => { :case_sensitive => false },
-                     :length => { :within => 8..255 },
-                     :format => { :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i }
+                    :uniqueness => { :case_sensitive => false },
+                    :length => { :within => 8..255 },
+                    :format => { :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i }
 
   validates :password, :presence => true,
                        :length => { :within => 4..255 }
+
+  validates :admin, :presence => true
 
   def generate_token(column)
     begin

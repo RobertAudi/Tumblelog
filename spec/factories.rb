@@ -4,6 +4,7 @@ Factory.define :user do |user|
   user.password "admin"
   user.password_confirmation "admin"
   user.auth_token SecureRandom.urlsafe_base64
+  user.admin "0"
 end
 
 Factory.sequence :username do |n|

@@ -28,6 +28,7 @@ class Admin::PostsController < Admin::BaseController
   def edit
     @post = Post.find_by_id(params[:id])
     @title = "Editing \"#{@post.title}\"..."
+    redirect_to admin_post_path(@path), :alert => "You are not allowed to edit this post!" unless author?
   end
 
   def update
@@ -39,5 +40,11 @@ class Admin::PostsController < Admin::BaseController
       @title = "Editing \"#{@post.title}\"..."
       render 'edit'
     end
+  end
+  
+  private
+  
+  def author?
+    admin? || current_user.id == @post.user_id
   end
 end

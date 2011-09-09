@@ -2,15 +2,37 @@ require 'spec_helper'
 
 describe Admin::UsersController do
   render_views
-  
+
   before(:each) do
     test_log_in(Factory(:user,
                           :username => "user2",
                           :email => "user2@example.com",
                           :password => "admin",
-                          :password_confirmation => "admin",))
+                          :password_confirmation => "admin",
+                          :admin => "1"))
   end
-  
+
+  describe "access controll" do
+    before(:each) do
+    test_log_in(Factory(:user,
+                          :username => "user3",
+                          :email => "user3@example.com",
+                          :password => "admin",
+                          :password_confirmation => "admin",
+                          :admin => "0"))
+    end
+
+    it "should restrict the access to non-admins" do
+      get 'new'
+      response.should redirect_to(root_path)
+      post 'create', :user => {}
+      response.should redirect_to(root_path)
+      get 'edit', :id => 1
+      response.should redirect_to(root_path)
+      put 'update', :id => 1, :user => {}
+      response.should redirect_to(root_path)
+    end
+  end
 
   describe "GET 'new'" do
     before(:each) do
@@ -28,7 +50,7 @@ describe Admin::UsersController do
     it "should have the right title" do
       response.should have_selector('title', :content => "Adding a new user...")
     end
-    
+
   end
 
   describe "GET 'show'" do
@@ -59,27 +81,27 @@ describe Admin::UsersController do
       @user = Factory(:user)
       get 'edit', :id => @user
     end
-    
+
     it "should be successful" do
       response.should be_success
     end
-    
+
     it "should render the 'edit' template" do
       response.should render_template('edit')
     end
-    
+
     it "should have the right title" do
       response.should have_selector("title", :content => "Editing #{@user.username}...")
     end
-    
+
     it "should not render a username field" do
       response.should_not have_selector('input', :id => 'user_username')
     end
-    
+
     it "should not render an email field" do
       response.should_not have_selector('input', :id => 'user_email')
     end
-    
+
     it "should get the right user" do
       assigns[:user].should == @user
     end
@@ -89,7 +111,7 @@ describe Admin::UsersController do
     before(:each) do
       @user = Factory(:user)
     end
-    
+
     context "failure" do
       before(:each) do
         @attr = {
@@ -99,7 +121,7 @@ describe Admin::UsersController do
 
         put 'update', :id => @user.id, :user => @attr
       end
-      
+
       it "should render the 'edit' template" do
         response.should render_template('edit')
       end
@@ -108,7 +130,7 @@ describe Admin::UsersController do
         response.should have_selector("title", :content => "Editing #{@user.username}...")
       end
     end
-    
+
     context "success" do
       before(:each) do
         @attr = {
@@ -118,11 +140,11 @@ describe Admin::UsersController do
 
         put 'update', :id => @user.id, :user => @attr
       end
-      
+
       it "should redirect the user to the user show page" do
         response.should redirect_to(admin_user_path(@user))
       end
-      
+
       it "should notify the user that his info has changed" do
         flash[:success].should =~ /you have successfully updated your info!/i
       end
@@ -130,7 +152,7 @@ describe Admin::UsersController do
   end
 
   describe "GET 'index'" do
-    
+
     before(:each) do
       get 'index'
     end
@@ -146,17 +168,17 @@ describe Admin::UsersController do
     it "should have the right title" do
       response.should have_selector('title', :content => "Users")
     end
-    
+
     it "should list users" do
       # Create 30 fake users
       30.times do
         Factory(:user, :username => Factory.next(:username), :email => Factory.next(:email))
       end
-      
+
       # Here I use `get 'index'` once again because I create the users after
       # having visited the page the first time.
       get 'index'
-      
+
       # Here I am testing two things at the same time (but that's not such a big deal):
       # - The presence of the username
       # - The presence and validity of the link
@@ -170,7 +192,7 @@ describe Admin::UsersController do
   describe "POST 'create'" do
     context "failure" do
       before(:each) do
-        @attr = { :username => "", :email => "", :password => "", :password_confirmation => "" }
+        @attr = { :username => "", :email => "", :password => "", :password_confirmation => "", :admin => "" }
         post 'create', :user => @attr
       end
 
@@ -199,7 +221,8 @@ describe Admin::UsersController do
           :username => "ExampleUser",
           :email => "user@example.com",
           :password => "password",
-          :password_confirmation => "password"
+          :password_confirmation => "password",
+          :admin => "0"
         }
       end
 

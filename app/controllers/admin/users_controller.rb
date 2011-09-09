@@ -1,4 +1,6 @@
 class Admin::UsersController < Admin::BaseController
+  before_filter :admin_required, :only => [:new, :create, :edit, :update]
+
   def index
     @title = "Users"
     @users = User.paginate(:page => params[:page], :per_page => 15).order("username ASC")

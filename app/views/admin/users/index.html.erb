@@ -12,7 +12,11 @@
   <% @users.each do |user| %>
   <tr>
     <td><%= link_to "View", admin_user_path(user) %></td>
-    <td><%= link_to user.username, edit_admin_user_path(user) %></td>
+    <% if admin? || current_user.id == user.id %>
+      <td><%= link_to user.username, edit_admin_user_path(user) %></td>
+    <% else %>
+      <td>user.username</td>
+    <% end %>
     <td><%= user.email %></td>
     <td><%= format_date(user.created_at, true) %></td>
     <td><%= format_date(user.updated_at, true) %></td>

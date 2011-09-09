@@ -12,10 +12,14 @@
   <% @posts.each do |post| %>
   <tr>
     <td><%= link_to "View", admin_post_path(post) %></td>
-    <td><%= link_to truncate(post.title), edit_admin_post_path(post) %></td>
+    <% if admin? || current_user.id == post.user_id %>
+      <td><%= link_to truncate(post.title), edit_admin_post_path(post) %></td>
+    <% else %>
+      <td><%= truncate(post.title) %></td>
+    <% end %>
     <td><%= truncate(post.body) %></td>
-    <td><%= format_date(post.created_at) %></td>
-    <td><%= format_date(post.updated_at) %></td>
+    <td><%= format_date(post.created_at, true) %></td>
+    <td><%= format_date(post.updated_at, true) %></td>
   </tr>
   <% end %>
 </table>

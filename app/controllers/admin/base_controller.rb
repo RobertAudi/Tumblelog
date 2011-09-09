@@ -3,6 +3,12 @@ class Admin::BaseController < ApplicationController
   
   before_filter :login_required
   
+  def admin_required
+    unless admin?
+      redirect_to root_url, :alert => "You need to be an Administrator to access this page."
+    end
+  end
+
   private
   
   def login_required

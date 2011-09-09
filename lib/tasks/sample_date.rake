@@ -8,13 +8,15 @@ namespace :db do
     User.create!(:username => "user",
                  :email => "user@example.com",
                  :password => "password",
-                 :password_confirmation => "password")
+                 :password_confirmation => "password",
+                 :admin => "0")
 
     # Create an admin user
     User.create!(:username => "admin",
                  :email => "admin@example.com",
                  :password => "admin",
-                 :password_confirmation => "admin")
+                 :password_confirmation => "admin",
+                 :admin => "1")
 
 
     # Create 6 other users
@@ -25,7 +27,8 @@ namespace :db do
       User.create!(:username => username,
                    :email => email,
                    :password => password,
-                   :password_confirmation => password)
+                   :password_confirmation => password,
+                   :admin => "0")
     end
     
     100.times do
