@@ -1,8 +1,24 @@
 section
 {
-  width: 270px;
+  width: 300px;
+  background-color: #eee;
   margin: 0 auto;
   margin-top: 100px;
+  border: 1px solid #ccc;
+
+  /* Rounded corners */
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius:  10px;
+  border-radius:         10px;
+}
+h1
+{
+  margin-top: 10px;
+}
+h1, p
+{
+  margin-left: 22px;
 }
 .field p
 {
