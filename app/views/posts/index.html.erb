@@ -1,0 +1,5 @@
+<% @posts.each do |post| %>
+  <h2><%= link_to post.title, post %></h2>
+  <p><%= format_date(post.created_at) %></p>
+  <%= post.body %>
+<% end %>

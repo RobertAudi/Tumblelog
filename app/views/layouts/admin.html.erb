@@ -2,7 +2,7 @@
 <html>
 <head>
   <title><%= title %></title>
-  <%= stylesheet_link_tag "admin/base", "admin/dashboard", "blueprint/screen" %>
+  <%= stylesheet_link_tag "admin/base", "blueprint/screen" %>
   <%= stylesheet_link_tag "blueprint/print", :media => "print" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,7 +11,7 @@
   <header class="clearfix">
     <section>
     <nav>
-      <p class="left"><%= link_to "Visit your site", '#' %></p>
+      <p class="left"><%= link_to "Visit your site", root_url %></p>
       <p class="right">
         <% if logged_in? %>
           Logged in as <%= link_to current_user.username, admin_user_path(current_user) %> |
