@@ -17,6 +17,7 @@ describe PostsController do
     end
 
     it "should list posts" do
+      Factory(:user)
       30.times do
         Factory(:post, :title => Factory.next(:title), :body => Factory.next(:body))
       end
