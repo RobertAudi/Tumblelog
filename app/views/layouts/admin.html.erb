@@ -35,7 +35,9 @@
       <%= yield %>
     </section>
 
-    <%= debug params if Rails.env.development? %>
+    <% if defined?(Footnotes) && Rails.env.development? %>
+      <%= Footnotes.run! %>
+    <% end %>
   </div>
 </body>
 </html>
