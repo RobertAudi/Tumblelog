@@ -110,8 +110,6 @@ GEM
       activesupport (= 3.1.0)
       bundler (~> 1.0)
       railties (= 3.1.0)
-    rails-footnotes (3.7.4)
-      rails (>= 3.0.0)
     railties (3.1.0)
       actionpack (= 3.1.0)
       activesupport (= 3.1.0)
@@ -192,7 +190,6 @@ DEPENDENCIES
   jquery-rails (= 1.0.13)
   powder (= 0.1.6)
   rails (= 3.1.0)
-  rails-footnotes (>= 3.7)
   rb-fsevent (= 0.4.3.1)
   rspec-rails (= 2.6.1)
   ruby-debug19
