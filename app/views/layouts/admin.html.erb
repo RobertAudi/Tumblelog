@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
+  <%# Basic Page Needs %>
+  <%# ================================================== %>
+  <meta charset="utf-8">
   <title><%= title %></title>
-  <%= stylesheet_link_tag "blueprint/screen", "admin/base" %>
-  <%= stylesheet_link_tag "blueprint/print", :media => "print" %>
+
+  <%# HTML Shiv for IE < 9 %>
+  <%# ================================================== %>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <%# Skeleton Framework %>
+  <%# ================================================== %>
+  <%= stylesheet_link_tag "base", "skeleton", "layout" %>
+
+  <%# My CSS %>
+  <%# ================================================== %>
+  <%= stylesheet_link_tag "admin/base" %>
+
+  <%# Favicons %>
+  <%# ================================================== %>
+  <%#<link rel="shortcut icon" href="images/favicon.ico">%>
+  <%#<link rel="apple-touch-icon" href="images/apple-touch-icon.png">%>
+  <%#<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">%>
+  <%#<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">%>
+
+
+  <%# JS %>
+  <%# ================================================== %>
   <%= javascript_include_tag "application" %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -25,7 +55,14 @@
   </header>
 
   <div class="container">
-    <section>
+    <nav class="sixteen columns">
+      <ul>
+        <li><%= link_to "Dashboard", dashboard_path %></li>
+        <li><%= link_to "Posts", admin_posts_path %></li>
+        <li><%= link_to "Users", admin_users_path %></li>
+      </ul>
+    </nav>
+    <section id="main-content" class="sixteen columns">
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>">
           <%= value %>
@@ -34,8 +71,9 @@
 
       <%= yield %>
     </section>
+    <br class="clear" />
 
     <%= debug params if Rails.env.development? %>
-  </div>
+  </div> <%# End of div#container %>
 </body>
 </html>
