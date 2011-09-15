@@ -3,7 +3,11 @@
 <section id="posts">
     <h3>Recent posts</h3>
     <% @posts.each do |post| %>
-      <h5><%= link_to post.title, edit_admin_post_path(post) %></h5>
+      <% if admin? || current_user.id == post.user_id %>
+        <h5><%= link_to post.title, edit_admin_post_path(post) %></h5>
+      <% else %>
+        <h5><%= post.title %></h5>
+      <% end %>
       <p class="date"><%= format_date(post.created_at, true) %></p>
       <p><%= truncate(post.body, :length => 150) %></p>
     <% end %>
@@ -12,7 +16,11 @@
 <section id="drafts">
   <h3>Drafts</h3>
   <% @drafts.each do |draft| %>
-      <h5><%= link_to draft.title, edit_admin_post_path(draft) %></h5>
+      <% if admin? || current_user.id == draft.user_id %>
+        <h5><%= link_to draft.title, edit_admin_post_path(draft) %></h5>
+      <% else %>
+        <h5><%= draft.title %></h5>
+      <% end %>
       <p class="date"><%= format_date(draft.created_at, true) %></p>
       <p><%= truncate(draft.body, :length => 150) %></p>
   <% end %>
