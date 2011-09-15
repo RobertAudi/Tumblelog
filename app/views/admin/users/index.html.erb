@@ -18,8 +18,8 @@
       <td>user.username</td>
     <% end %>
     <td><%= user.email %></td>
-    <td><%= format_date(user.created_at, true) %></td>
-    <td><%= format_date(user.updated_at, true) %></td>
+    <td><%= format_date(user.created_at, "short", true) %></td>
+    <td><%= format_date(user.updated_at, "short", true) %></td>
   </tr>
   <% end %>
 </table>

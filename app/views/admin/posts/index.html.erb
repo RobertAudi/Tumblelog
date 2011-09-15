@@ -18,8 +18,8 @@
       <td><%= truncate(post.title) %></td>
     <% end %>
     <td><%= truncate(post.body) %></td>
-    <td><%= format_date(post.created_at, true) %></td>
-    <td><%= format_date(post.updated_at, true) %></td>
+    <td><%= format_date(post.created_at, "short", true) %></td>
+    <td><%= format_date(post.updated_at, "short", true) %></td>
   </tr>
   <% end %>
 </table>

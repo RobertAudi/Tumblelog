@@ -8,7 +8,7 @@
       <% else %>
         <h5><%= post.title %></h5>
       <% end %>
-      <p class="date"><%= format_date(post.created_at, true) %></p>
+      <p class="date"><%= format_date(post.created_at, "long", true) %></p>
       <p><%= truncate(post.body, :length => 150) %></p>
     <% end %>
 </section>
@@ -21,7 +21,7 @@
       <% else %>
         <h5><%= draft.title %></h5>
       <% end %>
-      <p class="date"><%= format_date(draft.created_at, true) %></p>
+      <p class="date"><%= format_date(draft.created_at, "long", true) %></p>
       <p><%= truncate(draft.body, :length => 150) %></p>
   <% end %>
 </section>

@@ -5,6 +5,6 @@
 <ul>
     <li><strong>Username:</strong> <%= @user.username %></li>
     <li><strong>Email:</strong> <%= @user.email %></li>
-    <li><strong>Created on:</strong> <%= format_date @user.created_at, true %></li>
-    <li><strong>Updated on:</strong> <%= format_date @user.updated_at, true %></li>
+    <li><strong>Created on:</strong> <%= format_date @user.created_at, "long", true %></li>
+    <li><strong>Updated on:</strong> <%= format_date @user.updated_at, "long", true %></li>
 </ul>
