@@ -28,6 +28,15 @@ describe PostsController do
         response.should have_selector("h2>a", :content => post.title, :href => post_path(post))
       end
     end
+
+    it "should not display drafts" do
+      Factory(:user)
+      post = Factory(:post, :draft => 1)
+      
+      get 'index'
+
+      response.should_not have_selector("h2", :content => post.title)
+    end
   end
 
   describe "GET 'show'" do
@@ -51,6 +60,21 @@ describe PostsController do
 
     it "should retrive the correct post" do
       assigns[:post].should == @post
+    end
+
+    context "draft" do
+      before(:each) do
+        post = Factory(:post, :draft => 1)
+        get 'show', :id => post.id
+      end
+      
+      it "should redirect the user to the root path" do
+        response.should redirect_to(root_path)
+      end
+
+      it "should show a message informing the user that the post doesn't exist" do
+        flash[:alert].should =~ /unable to find the requested post/i
+      end
     end
   end
 

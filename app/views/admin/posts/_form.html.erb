@@ -9,6 +9,11 @@
   <p><%= f.text_area :body, :size => "20x40" %></p>
 </div>
 
+<p class="drop-down">
+  <%= f.label :draft, 'Status' %>
+  <%= f.select(:draft, options_for_select([["Published", 0], ["Draft", 1]], (@post.new_record? ? 0: @post.draft))) %>
+</p>
+
 <%= f.hidden_field :user_id, :value => @post.user_id || current_user.id %>
 
 <p class="button"><%= f.submit "Post", :disable_with => 'Posting...' %></p>

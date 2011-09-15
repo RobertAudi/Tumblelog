@@ -1,10 +1,19 @@
-section#posts
+section#posts,
+section#drafts
 {
   width: 400px;
   border: 1px solid #333;
+  margin-bottom: 10px;
+
+  /* Rounded corners */
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius:  10px;
+  border-radius:         10px;
 }
 
-section#posts .date
+section#posts .date,
+section#drafts .date
 {
   font-style: italic;
   font-size: 80%;

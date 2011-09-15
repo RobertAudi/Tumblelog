@@ -8,6 +8,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  user_id    :integer
+#  draft      :integer
 #
 
 class Post < ActiveRecord::Base
@@ -23,4 +24,6 @@ class Post < ActiveRecord::Base
                                          :only_integer => true,
                                          :greater_than_or_equal_to => 1
                                        }
+
+  validates :draft, :presence => true
 end

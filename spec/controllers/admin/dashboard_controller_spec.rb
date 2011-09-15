@@ -8,21 +8,28 @@ describe Admin::DashboardController do
       test_log_in(Factory(:user))
       get 'index'
     end
-    
+
     it "should be successful" do
       response.should be_success
     end
-    
+
     it "should render the 'index' template" do
       response.should render_template('index')
     end
-    
+
     it "should have the right title" do
       response.should have_selector("title", :content => "Dashboard")
     end
-    
-    it "should list the five latest posts" do
+
+    it "should list the five latest published posts" do
       assigns[:posts].length.should <= 5
+      assigns[:posts].each do |post|
+        post.draft.should == 0
+      end
+    end
+
+    it "should list the five latest drafts" do
+      assigns[:drafts].length.should <= 5
     end
   end
 

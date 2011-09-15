@@ -37,7 +37,19 @@ namespace :db do
       body = Faker::Lorem.paragraph(rand(42)+2)
 
       user.posts.create!(:title => title,
-                         :body => body)
+                         :body => body,
+                         :draft => 0)
+    end
+
+    # Create five draft posts
+    5.times do
+      user = User.find_by_id(rand(6) + 1)
+      title = Faker::Lorem.words(5).join(" ").capitalize
+      body = Faker::Lorem.paragraph(rand(42)+2)
+
+      user.posts.create!(:title => title,
+                         :body => body,
+                         :draft => 1)
     end
     
   end

@@ -8,3 +8,12 @@
       <p><%= truncate(post.body, :length => 150) %></p>
     <% end %>
 </section>
+
+<section id="drafts">
+  <h3>Drafts</h3>
+  <% @drafts.each do |draft| %>
+      <h5><%= link_to draft.title, edit_admin_post_path(draft) %></h5>
+      <p class="date"><%= format_date(draft.created_at, true) %></p>
+      <p><%= truncate(draft.body, :length => 150) %></p>
+  <% end %>
+</section>

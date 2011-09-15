@@ -77,7 +77,9 @@ describe Admin::PostsController do
       before(:each) do
         @attr = {
           :title => "",
-          :body => ""
+          :body => "",
+          :user_id => 0,
+          :draft => nil
         }
         post 'create', :user => @attr
       end
@@ -102,7 +104,9 @@ describe Admin::PostsController do
         @attr = {
           :title => "This is the title",
           :body => "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-          :user_id => 1
+          :user_id => 1,
+          :draft => 0
+
         }
         post 'create', :post => @attr
       end
