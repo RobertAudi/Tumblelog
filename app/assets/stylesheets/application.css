@@ -2,3 +2,58 @@
  *= require_self
  *= require_directory .
 */
+section#user-bar
+{
+  background-color: #2a2a2a;
+  height: 40px;
+  border-top: 3px solid #000;
+  border-bottom: 2px solid #000;
+}
+section#user-bar > div
+{
+  width: 960px;
+  margin: 0 auto;
+  padding: 10px;
+  color: #eee;
+}
+section#user-bar div p
+{
+  margin: 0;
+}
+section#user-bar div p.left
+{
+  float: left;
+  margin-left: 10px;
+}
+section#user-bar div p.right
+{
+  float: right;
+  margin-right: 10px;
+}
+
+/* User Bar Links */
+section#user-bar a:link,
+section#user-bar a:visited
+{
+  color: #eee;
+}
+section#user-bar a:hover,
+section#user-bar a:active
+{
+  color: #c3c3c3;
+}
+
+/* Debug Dump */
+.debug_dump
+{
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #fcc;
+  border: 1px solid red;
+
+  /* Rounded corners */
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius:  10px;
+  border-radius:         10px;
+}
