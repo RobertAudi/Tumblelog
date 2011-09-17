@@ -80,9 +80,7 @@ describe Admin::PostsController do
           :body => "",
           :user_id => 1,
           :draft => nil,
-
-          # This is a nasty hack to make the tests pass in this block...
-          :post_type => "text_form",
+          :post_type => "text",
         }
         post 'create', :post => @attr
       end

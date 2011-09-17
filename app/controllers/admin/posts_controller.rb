@@ -18,7 +18,7 @@ class Admin::PostsController < Admin::BaseController
       redirect_to admin_post_path(@post)
     else
       @title = "Creating a new post..."
-      @form_partial = params[:post][:post_type]
+      @form_partial = get_form_partial(params[:post][:post_type])
       render 'new'
     end
   end
