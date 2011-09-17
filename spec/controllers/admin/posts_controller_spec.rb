@@ -149,6 +149,12 @@ describe Admin::PostsController do
     it "should find the right post" do
       assigns[:post].should == @post
     end
+
+    it "should redirect to the index page with an error message if no post was found" do
+      get 'show', :id => "invalid"
+      response.should redirect_to admin_posts_path
+      flash[:error].should =~ /unable to find the requested post/i
+    end
   end
   
   describe "GET 'edit'" do

@@ -22,13 +22,25 @@ class Admin::PostsController < Admin::BaseController
 
   def show
     @post = Post.find_by_id(params[:id])
-    @title = @post.title
+    if @post.nil?
+      # FIXME: Show 404 instead
+      flash[:error] = "Unable to find the requested post..."
+      redirect_to :action => :index
+    else
+      @title = @post.title
+    end
   end
 
   def edit
     @post = Post.find_by_id(params[:id])
-    @title = "Editing \"#{@post.title}\"..."
     redirect_to admin_post_path(@path), :alert => "You are not allowed to edit this post!" unless author?
+    if @post.nil?
+      # FIXME: Show 404 instead
+      flash[:error] = "Unable to find the requested post..."
+      redirect_to :action => :index
+    else
+      @title = "Editing \"#{@post.title}\"..."
+    end
   end
 
   def update
