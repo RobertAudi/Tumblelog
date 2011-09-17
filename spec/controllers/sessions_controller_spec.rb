@@ -36,7 +36,7 @@ describe SessionsController do
       end
       
       it "should display an error message to the user" do
-        flash.now[:error].should =~ /invalid/i
+        flash.now[:alert].should =~ /invalid/i
       end
     end
     

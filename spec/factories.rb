@@ -20,6 +20,7 @@ Factory.define :post do |post|
   post.body "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
   post.user_id 1
   post.draft 0
+  post.post_type "text"
 end
 
 Factory.sequence :title do |n|

@@ -6,6 +6,8 @@ class Admin::PostsController < Admin::BaseController
 
   def new
     @post = Post.new
+    @form_partial = get_form_partial(params[:post_type])
+    redirect_to admin_posts_path, :alert => "You tried to create an unknown type of post..." if @form_partial.nil?
     @title = "Creating a new post..."
   end
   
@@ -16,6 +18,7 @@ class Admin::PostsController < Admin::BaseController
       redirect_to admin_post_path(@post)
     else
       @title = "Creating a new post..."
+      @form_partial = params[:post][:post_type]
       render 'new'
     end
   end
@@ -24,8 +27,7 @@ class Admin::PostsController < Admin::BaseController
     @post = Post.find_by_id(params[:id])
     if @post.nil?
       # FIXME: Show 404 instead
-      flash[:error] = "Unable to find the requested post..."
-      redirect_to :action => :index
+      redirect_to admin_posts_path, :alert => "Unable to find the requested post..."
     else
       @title = @post.title
     end
@@ -36,10 +38,11 @@ class Admin::PostsController < Admin::BaseController
     redirect_to admin_post_path(@path), :alert => "You are not allowed to edit this post!" unless author?
     if @post.nil?
       # FIXME: Show 404 instead
-      flash[:error] = "Unable to find the requested post..."
-      redirect_to :action => :index
+      flash[:alert] = "Unable to find the requested post..."
+      redirect_to admin_posts_path
     else
       @title = "Editing \"#{@post.title}\"..."
+      @form_partial = get_form_partial(@post.post_type)
     end
   end
 
@@ -50,6 +53,7 @@ class Admin::PostsController < Admin::BaseController
       redirect_to admin_post_path(@post)
     else
       @title = "Editing \"#{@post.title}\"..."
+      @form_partial = get_form_partial(params[:post][:post_type])
       render 'edit'
     end
   end
@@ -59,4 +63,33 @@ class Admin::PostsController < Admin::BaseController
   def author?
     admin? || current_user.id == @post.user_id
   end
+
+  def get_form_partial(post_type)
+    # Types logic
+    if post_type == "text"
+      "text_form"
+    elsif post_type == "image"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "quote"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "link"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "audio"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "video"
+      # NOTE: Not yet implemented
+      nil
+    else
+      nil
+    end
+
+  end
+
+  
 end
+
+

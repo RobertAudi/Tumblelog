@@ -2,11 +2,13 @@ require 'spec_helper'
 
 describe Post do
   before(:each) do
+    Factory(:user)
     @attr = {
       :title => "This is the title",
       :body  => "This is the body",
-      :id => 1,
-      :draft => 0
+      :user_id => 1,
+      :draft => 0,
+      :post_type => "text"
     }
   end
 
@@ -49,6 +51,25 @@ describe Post do
     describe "draft" do
       it "should require a draft attribute" do
         post = Post.new(@attr.merge(:draft => nil))
+        post.should_not be_valid
+      end
+    end
+
+    describe "post_type" do
+      it "should require a post type" do
+        post = Post.new(@attr.merge(:post_type => nil))
+        post.should_not be_valid
+      end
+
+      it "should require a valid post type" do
+        # TODO: Add the other valid post types here as they are implemented
+        valid_post_types = %w[text]
+        valid_post_types.each do |valid_post_type|
+          post = Post.new(@attr.merge(:post_type => valid_post_type))
+          post.should be_valid
+        end
+
+        post = Post.new(@attr.merge(:post_type => "invalid"))
         post.should_not be_valid
       end
     end

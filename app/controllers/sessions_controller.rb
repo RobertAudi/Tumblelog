@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       redirect_to_target_or_default dashboard_path
     else
       @title = "Log in"
-      flash.now[:error] = "Invalid login/password combination"
+      flash.now[:alert] = "Invalid login/password combination"
       render 'new'
     end
   end

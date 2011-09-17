@@ -38,7 +38,8 @@ namespace :db do
 
       user.posts.create!(:title => title,
                          :body => body,
-                         :draft => 0)
+                         :draft => 0,
+                         :post_type => "text")
     end
 
     # Create five draft posts
@@ -49,7 +50,8 @@ namespace :db do
 
       user.posts.create!(:title => title,
                          :body => body,
-                         :draft => 1)
+                         :draft => 1,
+                         :post_type => "text")
     end
     
   end

@@ -2,18 +2,19 @@ Tumblelog::Application.routes.draw do
   root :to => "posts#index"
   resources :posts, :only => [:index, :show]
   resources :sessions, :only => [:new, :create, :destroy]
-  
+
   match '/login' => 'sessions#new'
   match '/logout' => 'sessions#destroy'
-  
+
   match "/admin/dashboard" => 'admin/dashboard#index', :as => "dashboard"
   namespace :admin do
     get "dashboard/index"
     match "/" => redirect("/admin/dashboard")
 
     resources :users
-    
-    resources :posts
+
+    match "posts/new/:post_type" => "posts#new"
+    resources :posts, :except => :new
   end
 
   # The priority is based upon order of creation:

@@ -9,10 +9,11 @@
 #  updated_at :datetime
 #  user_id    :integer
 #  draft      :integer
+#  post_type  :string(255)
 #
 
 class Post < ActiveRecord::Base
-  attr_accessible :title, :body, :user_id, :draft
+  attr_accessible :title, :body, :user_id, :draft, :post_type
   
   belongs_to :user
   
@@ -28,4 +29,7 @@ class Post < ActiveRecord::Base
                                        }
 
   validates :draft, :presence => true
+
+  validates :post_type, :presence => true,
+                        :format => { :with => /^(text|image|quote|link|audio|video)$/ }
 end
