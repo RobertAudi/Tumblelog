@@ -13,7 +13,7 @@ Tumblelog::Application.routes.draw do
 
     resources :users
 
-    match "posts/new/:post_type" => "posts#new"
+    match "posts/new/:post_type" => "posts#new", :as => "new_post"
     resources :posts, :except => :new
   end
 
