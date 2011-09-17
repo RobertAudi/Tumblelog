@@ -17,10 +17,12 @@ class Post < ActiveRecord::Base
   
   belongs_to :user
   
-  validates :title, :presence => true,
-                    :length => { :within => 1..255 }
+  with_options :if => :text_post_type? do |post|
+    post.validates :title, :presence => true,
+              :length => { :within => 1..255 }
+    post.validates :body, :presence => true
+  end
 
-  validates :body, :presence => true
 
   validates :user_id, :presence => true,
                       :numericality => {
@@ -32,4 +34,10 @@ class Post < ActiveRecord::Base
 
   validates :post_type, :presence => true,
                         :format => { :with => /^(text|image|quote|link|audio|video)$/ }
+
+  private
+
+  def text_post_type?
+    post_type == "text"
+  end
 end

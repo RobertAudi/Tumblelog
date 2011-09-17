@@ -14,9 +14,12 @@ describe Post do
 
   describe "Validations" do
     describe "title" do
-      it "should require a title" do
-        post = Post.new(@attr.merge(:title => ""))
+      it "should only require a title if the post type is text" do
+        post = Post.new(@attr.merge(:title => "", :post_type => "text"))
         post.should_not be_valid
+
+        post = Post.new(@attr.merge(:title => "", :post_type => "image"))
+        post.should be_valid
       end
 
       it "should reject titles that are too long" do
@@ -26,9 +29,12 @@ describe Post do
     end
 
     describe "body" do
-      it "should require a body" do
-        post = Post.new(@attr.merge(:body => ""))
+      it "should only require a body if the post type is text" do
+        post = Post.new(@attr.merge(:body => "", :post_type => "text"))
         post.should_not be_valid
+
+        post = Post.new(@attr.merge(:body => "", :post_type => "image"))
+        post.should be_valid
       end
     end
 
@@ -63,7 +69,8 @@ describe Post do
 
       it "should require a valid post type" do
         # TODO: Add the other valid post types here as they are implemented
-        valid_post_types = %w[text]
+        # NOTE: I added the image type for testing purposes only, for now
+        valid_post_types = %w[text image]
         valid_post_types.each do |valid_post_type|
           post = Post.new(@attr.merge(:post_type => valid_post_type))
           post.should be_valid
