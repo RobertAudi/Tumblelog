@@ -1,3 +1,38 @@
-// Place all the styles related to the admin/posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+section#new-posts ul
+{
+  width: 420px;
+  margin: 0 auto;
+}
+section#new-posts ul li
+{
+  display: inline;
+}
+section#new-posts ul li a
+{
+  display: block;
+  float: left;
+  width: 50px;
+  height: 30px;
+  margin: 0 10px 20px 10px;
+  padding-top: 10px;
+  text-align: center;
+  border: 1px solid #222;
+
+  /* Rounded corners */
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius:  10px;
+  border-radius:         10px;
+}
+section#new-posts ul li:first-child a
+{
+  margin-left: 0;
+}
+section#new-posts ul li:last-child a
+{
+  margin-right: 0;
+}
+section#new-posts ul li a:hover
+{
+  background-color: #ddd;
+}
