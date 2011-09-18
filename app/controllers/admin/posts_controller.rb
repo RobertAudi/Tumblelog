@@ -57,7 +57,17 @@ class Admin::PostsController < Admin::BaseController
       render 'edit'
     end
   end
-  
+
+  def destroy
+    @post = Post.find_by_id(params[:id])
+    if admin? && @post.destroy
+      flash[:success] = "Post deleted successfully!"
+      redirect_to admin_posts_path
+    else
+      redirect_to admin_posts_path, :alert => "You are not allowed to delete users!"
+    end
+  end
+
   private
   
   def author?

@@ -23,7 +23,15 @@
   </tr>
   <% @posts.each do |post| %>
   <tr>
-    <td><%= link_to "View", admin_post_path(post) %></td>
+    <td>
+      <% if admin? %>
+        <%= link_to "Delete", admin_post_path(post),
+              :method => :delete,
+              :confirm => "Are you sure you want to delete the post: #{post.title} ?!",
+              :title => "Delete post: #{post.title}" %>
+      <% end %>
+      <%= link_to "View", admin_post_path(post) %>
+    </td>
     <% if admin? || current_user.id == post.user_id %>
       <td><%= link_to truncate(post.title), edit_admin_post_path(post) %></td>
     <% else %>

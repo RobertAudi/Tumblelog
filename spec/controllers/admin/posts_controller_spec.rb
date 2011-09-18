@@ -226,4 +226,44 @@ describe Admin::PostsController do
       end
     end
   end
+
+  describe "DELETE 'destroy'" do
+    context "for non-admin users" do
+      before(:each) do
+        test_log_in(Factory(:user))
+        @post = Factory(:post)
+      end
+
+      it "should not delete the post" do
+        lambda do
+          delete 'destroy', :id => @post.id
+        end.should_not change(Post, :count)
+      end
+
+      it "should redirect the user to the posts index with an alert" do
+        delete 'destroy', :id => @post.id
+        flash[:alert].should =~ /you are not allowed to delete users/i
+        response.should redirect_to admin_posts_path
+      end
+    end
+
+    context "for admin users" do
+      before(:each) do
+        test_log_in(Factory(:user, :admin => "1"))
+        @post = Factory(:post)
+      end
+
+      it "should delete the requested post" do
+        lambda do
+          delete 'destroy', :id => @post.id
+        end.should change(Post, :count).by(-1)
+      end
+
+      it "should redirect to the posts index with an alert" do
+        delete 'destroy', :id => @post.id
+        response.should redirect_to admin_posts_path
+        flash[:success].should =~ /post deleted successfully/i
+      end
+    end
+  end
 end

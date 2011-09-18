@@ -1,8 +1,8 @@
 Factory.define :user do |user|
-  user.username "admin"
-  user.email "admin@example.com"
-  user.password "admin"
-  user.password_confirmation "admin"
+  user.username "user"
+  user.email "user@example.com"
+  user.password "user"
+  user.password_confirmation "user"
   user.auth_token SecureRandom.urlsafe_base64
   user.admin "0"
 end
