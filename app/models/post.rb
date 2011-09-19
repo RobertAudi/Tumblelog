@@ -10,7 +10,7 @@
 #  user_id    :integer
 #  draft      :integer
 #  post_type  :string(255)
-#  image_url  :string(255)
+#  image      :string(255)
 #
 
 class Post < ActiveRecord::Base
