@@ -6,6 +6,7 @@ class Admin::PostsController < Admin::BaseController
 
   def new
     @post = Post.new
+    @form_html_options = (params[:post_type] == "image") ? { :multipart => true } : {}
     @form_partial = get_form_partial(params[:post_type])
     redirect_to admin_posts_path, :alert => "You tried to create an unknown type of post..." if @form_partial.nil?
     @title = "Creating a new post..."
@@ -29,7 +30,8 @@ class Admin::PostsController < Admin::BaseController
       # FIXME: Show 404 instead
       redirect_to admin_posts_path, :alert => "Unable to find the requested post..."
     else
-      @title = @post.title
+      @show_partial = "show_#{@post.post_type}"
+      @title = (@post.post_type == "text") ? @post.title : ""
     end
   end
 
@@ -79,8 +81,7 @@ class Admin::PostsController < Admin::BaseController
     if post_type == "text"
       "text_form"
     elsif post_type == "image"
-      # NOTE: Not yet implemented
-      nil
+      "image_form"
     elsif post_type == "quote"
       # NOTE: Not yet implemented
       nil

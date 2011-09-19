@@ -10,13 +10,16 @@
 #  user_id    :integer
 #  draft      :integer
 #  post_type  :string(255)
+#  image_url  :string(255)
 #
 
 class Post < ActiveRecord::Base
-  attr_accessible :title, :body, :user_id, :draft, :post_type
+  attr_accessible :title, :body, :user_id, :draft, :post_type, :image
   
   belongs_to :user
   
+  mount_uploader :image, ImageUploader
+
   with_options :if => :text_post_type? do |post|
     post.validates :title, :presence => true,
               :length => { :within => 1..255 }

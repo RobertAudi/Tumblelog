@@ -1,0 +1,4 @@
+<p><%= f.file_field :image %></p>
+<% unless @post.image_url.nil? %>
+  <%= image_tag @post.image_url.to_s %>
+<% end %>
