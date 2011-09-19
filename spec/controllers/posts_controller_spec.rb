@@ -54,12 +54,6 @@ describe PostsController do
       response.should render_template('show')
     end
 
-    it "should have the right title" do
-      # FIXME: Fix this test or remove it
-      # This is only valid for text posts
-      response.should have_selector("title", :content => @post.title)
-    end
-
     it "should retrive the correct post" do
       assigns[:post].should == @post
     end

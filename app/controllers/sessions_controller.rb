@@ -28,8 +28,7 @@ class SessionsController < ApplicationController
   
   def destroy
     cookies[:auth_token] = nil
-    # TODO: change the path below to be `root_path`
-    redirect_to login_path
+    redirect_to root_path
   end
   
   

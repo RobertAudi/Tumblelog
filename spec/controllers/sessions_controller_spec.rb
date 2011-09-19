@@ -77,7 +77,7 @@ describe SessionsController do
       controller.current_user.should be_nil
       
       # TODO: Change the path below to root_path
-      response.should redirect_to(login_path)
+      response.should redirect_to(root_path)
     end
   end
 end
