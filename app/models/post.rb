@@ -41,8 +41,9 @@ class Post < ActiveRecord::Base
   validates :post_type, :presence => true,
                         :format => { :with => /^(text|image|quote|link|audio|video)$/ }
 
+
+
   def get_title
-    # Types logic
     if post_type == "text"
       title
     elsif post_type == "image"
@@ -59,7 +60,25 @@ class Post < ActiveRecord::Base
     elsif post_type == "video"
       # NOTE: Not yet implemented
       nil
-    else
+    end
+  end
+
+  def get_form_partial(post_type)
+    if post_type == "text"
+      "text_form"
+    elsif post_type == "image"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "quote"
+      "quote_form"
+    elsif post_type == "link"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "audio"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "video"
+      # NOTE: Not yet implemented
       nil
     end
   end
