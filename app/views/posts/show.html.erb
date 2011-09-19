@@ -1,3 +1,3 @@
 <h1><%= @title %></h1>
 <p>Published on <%= format_date(@post.created_at) %> by <%= @post.user.username %></p>
-<%= @post.body.html_safe %>
+<%= render @show_partial %>

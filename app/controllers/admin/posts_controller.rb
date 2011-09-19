@@ -7,7 +7,7 @@ class Admin::PostsController < Admin::BaseController
   def new
     @post = Post.new
     @form_html_options = (params[:post_type] == "image") ? { :multipart => true } : {}
-    @form_partial = get_form_partial(params[:post_type])
+    @form_partial = @post.get_form_partial(params[:post_type])
     redirect_to admin_posts_path, :alert => "You tried to create an unknown type of post..." if @form_partial.nil?
     @title = "Creating a new post..."
   end
@@ -19,7 +19,7 @@ class Admin::PostsController < Admin::BaseController
       redirect_to admin_post_path(@post)
     else
       @title = "Creating a new post..."
-      @form_partial = get_form_partial(params[:post][:post_type])
+      @form_partial = @post.get_form_partial(params[:post][:post_type])
       render 'new'
     end
   end
@@ -30,8 +30,8 @@ class Admin::PostsController < Admin::BaseController
       # FIXME: Show 404 instead
       redirect_to admin_posts_path, :alert => "Unable to find the requested post..."
     else
+      @title = @post.get_title.to_s
       @show_partial = "show_#{@post.post_type}"
-      @title = (@post.post_type == "text") ? @post.title : ""
     end
   end
 
@@ -44,7 +44,7 @@ class Admin::PostsController < Admin::BaseController
       redirect_to admin_posts_path
     else
       @title = "Editing \"#{@post.title}\"..."
-      @form_partial = get_form_partial(@post.post_type)
+      @form_partial = @post.get_form_partial(@post.post_type)
     end
   end
 
@@ -55,7 +55,7 @@ class Admin::PostsController < Admin::BaseController
       redirect_to admin_post_path(@post)
     else
       @title = "Editing \"#{@post.title}\"..."
-      @form_partial = get_form_partial(params[:post][:post_type])
+      @form_partial = @post.get_form_partial(params[:post][:post_type])
       render 'edit'
     end
   end
@@ -75,32 +75,6 @@ class Admin::PostsController < Admin::BaseController
   def author?
     admin? || current_user.id == @post.user_id
   end
-
-  def get_form_partial(post_type)
-    # Types logic
-    if post_type == "text"
-      "text_form"
-    elsif post_type == "image"
-      "image_form"
-    elsif post_type == "quote"
-      # NOTE: Not yet implemented
-      nil
-    elsif post_type == "link"
-      # NOTE: Not yet implemented
-      nil
-    elsif post_type == "audio"
-      # NOTE: Not yet implemented
-      nil
-    elsif post_type == "video"
-      # NOTE: Not yet implemented
-      nil
-    else
-      nil
-    end
-
-  end
-
-  
 end
 
 

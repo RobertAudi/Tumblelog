@@ -11,6 +11,7 @@
 #  draft      :integer
 #  post_type  :string(255)
 #  image      :string(255)
+#  quote      :string(255)
 #
 
 require 'spec_helper'
@@ -24,6 +25,7 @@ describe Post do
       :user_id => 1,
       :draft => 0,
       :post_type => "text",
+      :quote => "Aziz, Light!"
     }
   end
 
@@ -94,6 +96,22 @@ describe Post do
         end
 
         post = Post.new(@attr.merge(:post_type => "invalid"))
+        post.should_not be_valid
+      end
+    end
+
+    describe "quote" do
+      it "should require a quote for posts of type quote" do
+        post = Post.new(@attr.merge(:quote => "", :post_type => "quote"))
+        post.should_not be_valid
+
+        post = Post.new(@attr.merge(:quote => "", :post_type => "text"))
+        post.should be_valid
+      end
+
+      it "should reject quotes that are too long" do
+        long_quote = "X" * 256
+        post = Post.new(@attr.merge(:quote => long_quote, :post_type => "quote"))
         post.should_not be_valid
       end
     end
