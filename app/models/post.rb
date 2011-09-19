@@ -14,7 +14,7 @@
 #
 
 class Post < ActiveRecord::Base
-  attr_accessible :title, :body, :user_id, :draft, :post_type, :quote
+  attr_accessible :title, :body, :user_id, :draft, :post_type, :quote, :image
   
   belongs_to :user
   
@@ -72,8 +72,7 @@ class Post < ActiveRecord::Base
     if post_type == "text"
       "text_form"
     elsif post_type == "image"
-      # NOTE: Not yet implemented
-      nil
+      "image_form"
     elsif post_type == "quote"
       "quote_form"
     elsif post_type == "link"
