@@ -55,6 +55,8 @@ describe PostsController do
     end
 
     it "should have the right title" do
+      # FIXME: Fix this test or remove it
+      # This is only valid for text posts
       response.should have_selector("title", :content => @post.title)
     end
 
