@@ -23,19 +23,21 @@ describe Post do
       :body  => "This is the body",
       :user_id => 1,
       :draft => 0,
-      :post_type => "text"
+      :post_type => "text",
     }
   end
 
   describe "Validations" do
     describe "title" do
       it "should only require a title if the post type is text" do
-        post = Post.new(@attr.merge(:title => "", :post_type => "text"))
+        post = Post.new(@attr.merge(:title => nil, :post_type => "text"))
         post.should_not be_valid
-
-        post = Post.new(@attr.merge(:title => "", :post_type => "image"))
-        post.should be_valid
       end
+
+      #it "should not require a title if the type is not text" do
+        #post = Post.new(@attr.merge(:title => nil, :post_type => "image"))
+        #post.should be_valid
+      #end
 
       it "should reject titles that are too long" do
         post = Post.new(@attr.merge(:title => "X" * 256))
@@ -45,12 +47,14 @@ describe Post do
 
     describe "body" do
       it "should only require a body if the post type is text" do
-        post = Post.new(@attr.merge(:body => "", :post_type => "text"))
+        post = Post.new(@attr.merge(:body => nil, :post_type => "text"))
         post.should_not be_valid
-
-        post = Post.new(@attr.merge(:body => "", :post_type => "image"))
-        post.should be_valid
       end
+
+      #it "should not require a body if the post type is not text" do
+        #post = Post.new(@attr.merge(:body => nil, :post_type => "image"))
+        #post.should be_valid
+      #end
     end
 
     describe "user_id" do
@@ -83,9 +87,7 @@ describe Post do
       end
 
       it "should require a valid post type" do
-        # TODO: Add the other valid post types here as they are implemented
-        # NOTE: I added the image type for testing purposes only, for now
-        valid_post_types = %w[text image]
+        valid_post_types = %w[text quote link audio video]
         valid_post_types.each do |valid_post_type|
           post = Post.new(@attr.merge(:post_type => valid_post_type))
           post.should be_valid
