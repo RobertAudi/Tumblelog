@@ -1,5 +1,5 @@
 <section class="post">
   <h1><%= @title %></h1>
   <p><%= link_to "Edit", edit_admin_post_path(@post) %></p>
-  <%= @post.body.html_safe %>
+  <%= render @show_partial %>
 </section>

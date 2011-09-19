@@ -10,10 +10,11 @@
 #  user_id    :integer
 #  draft      :integer
 #  post_type  :string(255)
+#  quote      :string(255)
 #
 
 class Post < ActiveRecord::Base
-  attr_accessible :title, :body, :user_id, :draft, :post_type
+  attr_accessible :title, :body, :user_id, :draft, :post_type, :quote
   
   belongs_to :user
   
@@ -21,6 +22,11 @@ class Post < ActiveRecord::Base
     post.validates :title, :presence => true,
               :length => { :within => 1..255 }
     post.validates :body, :presence => true
+  end
+
+  with_options :if => :quote_post_type? do |post|
+    post.validates :quote, :presence => true,
+              :length => { :within => 1..255 }
   end
 
 
@@ -35,9 +41,36 @@ class Post < ActiveRecord::Base
   validates :post_type, :presence => true,
                         :format => { :with => /^(text|image|quote|link|audio|video)$/ }
 
+  def get_title
+    # Types logic
+    if post_type == "text"
+      title
+    elsif post_type == "image"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "quote"
+      quote
+    elsif post_type == "link"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "audio"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "video"
+      # NOTE: Not yet implemented
+      nil
+    else
+      nil
+    end
+  end
+
   private
 
   def text_post_type?
     post_type == "text"
+  end
+
+  def quote_post_type?
+    post_type == "quote"
   end
 end

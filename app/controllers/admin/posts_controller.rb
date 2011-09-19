@@ -29,7 +29,8 @@ class Admin::PostsController < Admin::BaseController
       # FIXME: Show 404 instead
       redirect_to admin_posts_path, :alert => "Unable to find the requested post..."
     else
-      @title = @post.title
+      @title = @post.get_title.to_s
+      @show_partial = "show_#{@post.post_type}"
     end
   end
 
@@ -82,8 +83,7 @@ class Admin::PostsController < Admin::BaseController
       # NOTE: Not yet implemented
       nil
     elsif post_type == "quote"
-      # NOTE: Not yet implemented
-      nil
+      "quote_form"
     elsif post_type == "link"
       # NOTE: Not yet implemented
       nil
