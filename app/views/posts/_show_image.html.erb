@@ -1,1 +1,2 @@
+<p>Published on <%= format_date(@post.created_at) %> by <%= @post.user.username %></p>
 <%= link_to (image_tag @post.image_url(:thumb).to_s), @post.image_url.to_s %>

@@ -10,7 +10,7 @@ class PostsController < ApplicationController
       redirect_to admin_posts_path, :alert => "Unable to find the requested post..."
     else
       redirect_to root_url, :alert => "Unable to find the requested post!" if @post.draft == 1
-      @title = @post.get_title.to_s
+      @title = @post.title if @post.post_type == "text"
       @show_partial = "show_#{@post.post_type}"
     end
   end
