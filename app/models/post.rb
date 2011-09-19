@@ -10,6 +10,7 @@
 #  user_id    :integer
 #  draft      :integer
 #  post_type  :string(255)
+#  quote      :string(255)
 #
 
 class Post < ActiveRecord::Base
@@ -34,6 +35,30 @@ class Post < ActiveRecord::Base
 
   validates :post_type, :presence => true,
                         :format => { :with => /^(text|image|quote|link|audio|video)$/ }
+
+  def get_form_partial(post_type)
+    # Types logic
+    if post_type == "text"
+      "text_form"
+    elsif post_type == "image"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "quote"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "link"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "audio"
+      # NOTE: Not yet implemented
+      nil
+    elsif post_type == "video"
+      # NOTE: Not yet implemented
+      nil
+    else
+      nil
+    end
+  end
 
   private
 
