@@ -26,6 +26,9 @@ class Post < ActiveRecord::Base
     post.validates :body, :presence => true
   end
 
+  with_options :if => :image_post_type? do |post|
+    post.validates :image, :presence => true
+  end
 
   validates :user_id, :presence => true,
                       :numericality => {
@@ -42,5 +45,9 @@ class Post < ActiveRecord::Base
 
   def text_post_type?
     post_type == "text"
+  end
+
+  def image_post_type?
+    post_type == "image"
   end
 end
