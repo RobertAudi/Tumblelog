@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
-gem 'sqlite3', '1.3.4'
 gem 'jquery-rails', '1.0.13'
 gem 'will_paginate', '3.0.0'
 gem 'fog', '0.11.0'
@@ -16,7 +15,12 @@ group :assets do
   gem 'uglifier', '1.0.2'
 end
 
+group :production do
+  gem 'pg'
+end
+
 group :development do
+  gem 'sqlite3', '1.3.4'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rspec-rails', '2.6.1'
