@@ -15,9 +15,9 @@
 
 class Post < ActiveRecord::Base
   attr_accessible :title, :body, :user_id, :draft, :post_type, :quote, :image
-  
+
   belongs_to :user
-  
+
   mount_uploader :image, ImageUploader
 
   with_options :if => :text_post_type? do |post|

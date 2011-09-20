@@ -11,7 +11,7 @@ class Admin::PostsController < Admin::BaseController
     redirect_to admin_posts_path, :alert => "You tried to create an unknown type of post..." if @form_partial.nil?
     @title = "Creating a new post..."
   end
-  
+
   def create
     @post = Post.new(params[:post])
     if @post.save
@@ -71,7 +71,7 @@ class Admin::PostsController < Admin::BaseController
   end
 
   private
-  
+
   def author?
     admin? || current_user.id == @post.user_id
   end
