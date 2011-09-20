@@ -1,16 +1,18 @@
 <% @posts.each do |post| %>
-  <% if post.post_type == "text" %>
-    <h2><%= link_to post.title, post %></h2>
-  <% end %>
-  <p>Published on <%= format_date(post.created_at) %> by <%= post.user.username %></p>
-  <% if post.post_type == "text" %>
-    <%= post.body %>
-  <% elsif post.post_type == "image" %>
-    <%= link_to (image_tag post.image_url(:thumb).to_s), post.image_url.to_s %>
-  <% elsif post.post_type == "quote" %>
-    <q><%= post.quote %></q>
-  <% elsif post.post_type == "link" %>
-  <% elsif post.post_type == "audio" %>
-  <% elsif post.post_type == "video" %>
-  <% end %>
+  <section class="post <%= post.post_type %>-post post-<%= post.id %>">
+    <% if post.post_type == "text" %>
+      <h2><%= link_to post.title, post %></h2>
+    <% end %>
+    <p>Published on <%= format_date(post.created_at) %> by <%= post.user.username %></p>
+    <% if post.post_type == "text" %>
+      <%= post.body %>
+    <% elsif post.post_type == "image" %>
+      <%= link_to (image_tag post.image_url(:thumb).to_s), post.image_url.to_s %>
+    <% elsif post.post_type == "quote" %>
+      <q><%= "&laquo;#{post.quote}&raquo;".html_safe %></q>
+    <% elsif post.post_type == "link" %>
+    <% elsif post.post_type == "audio" %>
+    <% elsif post.post_type == "video" %>
+    <% end %>
+  </section>
 <% end %>

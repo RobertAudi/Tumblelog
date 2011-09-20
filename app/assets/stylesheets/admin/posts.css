@@ -36,3 +36,10 @@ section#new-posts ul li a:hover
 {
   background-color: #ddd;
 }
+
+section.quote-post q
+{
+  font-style: italic;
+  font-size: 30px;
+  font-family: Georgia, serif;
+}

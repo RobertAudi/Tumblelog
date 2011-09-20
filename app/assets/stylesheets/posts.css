@@ -1,3 +1,11 @@
-// Place all the styles related to the posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+section.post
+{
+  margin-bottom: 15px;
+}
+
+section.quote-post q
+{
+  font-style: italic;
+  font-size: 30px;
+  font-family: Georgia, serif;
+}
