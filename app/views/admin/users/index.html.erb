@@ -1,5 +1,9 @@
 <h1><%= @title %></h1>
 
+<% if admin? %>
+  <p><%= link_to "Create a new user", new_admin_user_path %>
+<% end %>
+
 <% if @users.any? %>
 <table class="users" summary="List of users">
   <tr>
