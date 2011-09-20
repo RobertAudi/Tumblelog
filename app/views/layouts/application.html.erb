@@ -39,7 +39,7 @@
       <section id="user-bar">
         <div>
           <p class="left"><%= link_to "Dashboard", dashboard_path %></p>
-          <p class="right">Logged in as <%= link_to current_user.username, admin_user_path(current_user) %></p>
+          <p class="right">Logged in as <%= link_to current_user.username, admin_user_path(current_user) %> | <%= link_to "Log out", logout_path %></p>
         </div>
       </section>
     <% end %>
