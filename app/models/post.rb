@@ -11,6 +11,7 @@
 #  draft      :integer
 #  post_type  :string(255)
 #  image      :string(255)
+#  quote      :string(255)
 #
 
 class Post < ActiveRecord::Base
