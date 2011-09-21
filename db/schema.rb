@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110919090053) do
+ActiveRecord::Schema.define(:version => 20110921111653) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20110919090053) do
     t.string   "post_type"
     t.string   "image"
     t.string   "quote"
+    t.string   "quote_source"
   end
 
   create_table "users", :force => true do |t|

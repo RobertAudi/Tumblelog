@@ -9,7 +9,8 @@
     <% elsif post.post_type == "image" %>
       <%= link_to (image_tag post.image_url(:thumb).to_s), post.image_url.to_s %>
     <% elsif post.post_type == "quote" %>
-      <q><%= "&laquo;#{post.quote}&raquo;".html_safe %></q>
+      <q cite="<%= post.quote_source %>"><%= "&laquo;#{post.quote}&raquo;".html_safe %></q>
+      <p class="quote-source"><%= post.quote_source %></p>
     <% elsif post.post_type == "link" %>
     <% elsif post.post_type == "audio" %>
     <% elsif post.post_type == "video" %>

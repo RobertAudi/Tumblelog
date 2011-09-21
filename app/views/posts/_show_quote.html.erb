@@ -1,2 +1,3 @@
 <p>Published on <%= format_date(@post.created_at) %> by <%= @post.user.username %></p>
-<q><%= @post.quote %></q>
+<q cite="<%= @post.quote_source %>"><%= @post.quote %></q>
+<p class="quote-source"><%= @post.quote_source %></p>

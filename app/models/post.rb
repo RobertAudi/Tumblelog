@@ -15,7 +15,7 @@
 #
 
 class Post < ActiveRecord::Base
-  attr_accessible :title, :body, :user_id, :draft, :post_type, :quote, :image
+  attr_accessible :title, :body, :user_id, :draft, :post_type, :quote, :image, :quote_source
 
   belongs_to :user
 

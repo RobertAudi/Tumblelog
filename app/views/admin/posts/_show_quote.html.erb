@@ -1,3 +1,4 @@
 <p>Published on <%= format_date(@post.created_at) %> by <%= @post.user.username %></p>
 <p><%= link_to "Edit", edit_admin_post_path(@post) %></p>
-<q><%= @post.quote %></q>
+<q cite="<%= @post.quote_source %>"><%= @post.quote %></q>
+<p class="quote-source"><%= @post.quote_source %></p>
