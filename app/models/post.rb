@@ -2,20 +2,22 @@
 #
 # Table name: posts
 #
-#  id         :integer         not null, primary key
-#  title      :string(255)
-#  body       :text
-#  created_at :datetime
-#  updated_at :datetime
-#  user_id    :integer
-#  draft      :integer
-#  post_type  :string(255)
-#  image      :string(255)
-#  quote      :string(255)
+#  id           :integer         not null, primary key
+#  title        :string(255)
+#  body         :text
+#  created_at   :datetime
+#  updated_at   :datetime
+#  user_id      :integer
+#  draft        :integer
+#  post_type    :string(255)
+#  image        :string(255)
+#  quote        :string(255)
+#  quote_source :string(255)
+#  link         :text
 #
 
 class Post < ActiveRecord::Base
-  attr_accessible :title, :body, :user_id, :draft, :post_type, :quote, :image, :quote_source
+  attr_accessible :title, :body, :user_id, :draft, :post_type, :quote, :image, :quote_source, :link
 
   belongs_to :user
 
@@ -34,6 +36,10 @@ class Post < ActiveRecord::Base
   with_options :if => :quote_post_type? do |post|
     post.validates :quote, :presence => true,
               :length => { :within => 1..255 }
+  end
+
+  with_options :if => :link_post_type? do |post|
+    post.validates :link, :presence => true
   end
 
   validates :user_id, :presence => true,
@@ -100,5 +106,9 @@ class Post < ActiveRecord::Base
 
   def quote_post_type?
     post_type == "quote"
+  end
+
+  def link_post_type?
+    post_type == "link"
   end
 end

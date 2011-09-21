@@ -25,7 +25,8 @@ describe Post do
       :user_id => 1,
       :draft => 0,
       :post_type => "text",
-      :quote => "Aziz, Light!"
+      :quote => "Aziz, Light!",
+      :link => "http://www.example.com/"
     }
   end
 
@@ -88,6 +89,7 @@ describe Post do
         post.should_not be_valid
       end
 
+      # FIXME: Split that test
       it "should require a valid post type" do
         valid_post_types = %w[text quote link audio video]
         valid_post_types.each do |valid_post_type|
@@ -113,6 +115,18 @@ describe Post do
         long_quote = "X" * 256
         post = Post.new(@attr.merge(:quote => long_quote, :post_type => "quote"))
         post.should_not be_valid
+      end
+    end
+
+    describe "link" do
+      it "should require a link for posts of type link" do
+        post = Post.new(@attr.merge(:link => "", :post_type => "link"))
+        post.should_not be_valid
+      end
+
+      it "should not require a link for posts of type other than link" do
+        post = Post.new(@attr.merge(:link => "", :post_type => "text"))
+        post.should be_valid
       end
     end
   end
