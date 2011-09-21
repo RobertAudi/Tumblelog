@@ -90,13 +90,15 @@ describe Post do
       end
 
       # FIXME: Split that test
-      it "should require a valid post type" do
+      it "should accept valid post types" do
         valid_post_types = %w[text quote link audio video]
         valid_post_types.each do |valid_post_type|
           post = Post.new(@attr.merge(:post_type => valid_post_type))
           post.should be_valid
         end
+      end
 
+      it "should reject invalid post types" do
         post = Post.new(@attr.merge(:post_type => "invalid"))
         post.should_not be_valid
       end
