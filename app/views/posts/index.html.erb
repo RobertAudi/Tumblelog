@@ -12,6 +12,7 @@
       <q cite="<%= post.quote_source %>"><%= "&laquo;#{post.quote}&raquo;".html_safe %></q>
       <p class="quote-source"><%= post.quote_source %></p>
     <% elsif post.post_type == "link" %>
+      <p><%= link_to post.link, post.link %></p>
     <% elsif post.post_type == "audio" %>
     <% elsif post.post_type == "video" %>
     <% end %>

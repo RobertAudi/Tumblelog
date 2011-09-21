@@ -83,8 +83,7 @@ class Post < ActiveRecord::Base
     elsif post_type == "quote"
       "quote_form"
     elsif post_type == "link"
-      # NOTE: Not yet implemented
-      nil
+      "link_form"
     elsif post_type == "audio"
       # NOTE: Not yet implemented
       nil
