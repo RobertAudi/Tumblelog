@@ -5,9 +5,9 @@
     <% if @posts.any? %>
       <% @posts.each do |post| %>
         <% if admin? || current_user.id == post.user_id %>
-          <h5><%= link_to post.title, edit_admin_post_path(post) %></h5>
+          <h5><%= link_to get_title(post), edit_admin_post_path(post) %></h5>
         <% else %>
-          <h5><%= post.title %></h5>
+          <h5><%= get_title(post) %></h5>
         <% end %>
         <p class="date"><%= format_date(post.created_at, "long", true) %></p>
         <p><%= truncate(post.body, :length => 150) %></p>

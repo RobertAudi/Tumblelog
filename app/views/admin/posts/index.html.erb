@@ -33,7 +33,7 @@
       <%= link_to "View", admin_post_path(post) %>
     </td>
     <% if admin? || current_user.id == post.user_id %>
-      <td><%= link_to truncate(post.title), edit_admin_post_path(post) %></td>
+      <td><%= link_to get_title(post), edit_admin_post_path(post) %></td>
     <% else %>
       <td><%= truncate(post.title) %></td>
     <% end %>
