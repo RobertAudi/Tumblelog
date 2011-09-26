@@ -39,7 +39,9 @@ class Post < ActiveRecord::Base
   end
 
   with_options :if => :link_post_type? do |post|
-    post.validates :link, :presence => true
+    post.validates :link, :presence => true,
+      # TODO: Add support for mailto, news and ftp links.
+      :format => { :with => /^(?:http(?:s)?:\/\/)?(?:www\.)?(?:[\.a-z0-9-]){1,}\.(?:[\.a-z0-9]){2,6}(?:\/(?:#?!?[\.a-z0-9_-]*\/?)*(?:\.[a-z0-9]{1,6})?(?:\?(?:[a-z0-9_]*=[:\.\/%a-z0-9_-]*&?)*)?)?$/i }
   end
 
   validates :user_id, :presence => true,
