@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
 gem 'jquery-rails', '1.0.19'
+gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'will_paginate', '3.0.2'
 gem 'fog', '1.1.2'
 gem 'rmagick', '2.13.1'
@@ -32,6 +33,7 @@ group :development do
   gem 'powder', '0.1.7'
   gem 'fuubar', '0.0.6'
   gem 'faker', '1.0.1'
+  gem 'thin'
 end
 
 group :test do
