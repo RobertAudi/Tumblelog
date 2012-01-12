@@ -23,10 +23,13 @@ section#new-posts ul li a
   font-weight: bold;
   color: #000;
 }
+
+/* New post icons */
 section#new-posts ul li a#new-text-post  { background: url("../text.png")  center top no-repeat; }
 section#new-posts ul li a#new-image-post { background: url("../image.png") center top no-repeat; }
 section#new-posts ul li a#new-quote-post { background: url("../quote.png") center top no-repeat; }
 section#new-posts ul li a#new-link-post  { background: url("../link.png")  center top no-repeat; }
+
 section#new-posts ul li:first-child a
 {
   margin-left: 0;
@@ -42,9 +45,80 @@ section#new-posts ul li a:active
   padding-top: 54px;
 }
 
-section.quote-post q
+/*---------------------------------------------------------*/
+
+div.post-container
 {
-  font-style: italic;
-  font-size: 30px;
-  font-family: Georgia, serif;
+  position: relative;
+
+  min-height: 300px;
+
+  margin: 30px 0 30px 0;
+  padding: 10px;
+
+  /* Background Gradient */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.05)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+  background: linear-gradient(top,  rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+  border: 5px solid #eee;
+
+  /* Rounded corners */
+  -webkit-border-bottom-right-radius: 20px;
+  -moz-border-radius-bottomright:     20px;
+  border-bottom-right-radius:         20px;
+
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+
+  /* Drop shadow */
+  -moz-box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.80);
+  -webkit-box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.80);
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.80);
+}
+div.post-container:first-child
+{
+  margin-top: 0;
+}
+
+div.post-container div.post
+{
+  width: 680px;
+  margin-bottom: 20px;
+}
+
+div.post-container div.post-meta
+{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  padding-top: 20px;
+  padding-left: 10px;
+
+  width: 200px;
+  min-height: 280px;
+
+  border-left: 1px solid #eee;
+}
+div.post-container div.post-meta ul.post-controls li
+{
+  display: inline;
+}
+div.post-container div.post-meta ul.post-controls li a
+{
+  display:block;
+  width: 30px;
+  text-align: center;
+  float: right;
+
+  margin: 0 10px;
+}
+
+div.post-container div.post-meta ul.post-infos li
+{
+  font-size: 85%;
 }

@@ -11,37 +11,45 @@
 </section>
 
 <% if @posts.any? %>
-<table class="posts" summary="List of posts">
-  <tr>
-    <th><%# View Link %></th>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Created on:</th>
-    <th>Updated on:</th>
-  </tr>
   <% @posts.each do |post| %>
-  <tr>
-    <td>
-      <% if admin? %>
-        <%= link_to "Delete", admin_post_path(post),
-              :method => :delete,
-              :confirm => "Are you sure you want to delete the post: #{post.title} ?!",
-              :title => "Delete post: #{post.title}" %>
-      <% end %>
-      <%= link_to "View", admin_post_path(post) %>
-    </td>
-    <% if admin? || current_user.id == post.user_id %>
-      <td><%= link_to get_title(post), edit_admin_post_path(post) %></td>
-    <% else %>
-      <td><%= truncate(post.title) %></td>
-    <% end %>
-    <td><%= truncate(post.body) %></td>
-    <td><%= format_date(post.created_at, "short", true) %></td>
-    <td><%= format_date(post.updated_at, "short", true) %></td>
-  </tr>
-  <% end %>
-</table>
+    <div id="post-<%= post.id %>" class="post-container">
+      <div class="post">
+        <% if post.post_type == "text" %>
+          <h2 class="post-title"><%= post.title %></h2>
+          <div class="post-content"><%= post.body %></div>
+        <% elsif post.post_type == "image" %>
+          <%= image_tag post.image_url(:thumb).to_s %>
+        <% end %>
 
+      </div>
+      <div class="post-meta">
+        <ul class="post-controls clearfix">
+          <%# Show the Delete link only to admins %>
+          <% if admin? %>
+            <li><%= link_to "Delete", admin_post_path(post),
+                      method: :delete,
+                      confirm: "Are you sure you want to delete the post: #{post.title}",
+                      title: "Delete post: #{post.title}",
+                      class: "button" %>
+            </li>
+          <% end %>
+          <li><%= link_to "Edit", edit_admin_post_path(post), class: "button" %></a></li>
+        </ul>
+        <ul class="post-infos">
+          <li><strong>Author:</strong> <%= post.user.username %></li>
+          <li><strong>Created on:</strong> <%= format_date(post.created_at, "short", true) %></li>
+          <li><strong>Last modified:</strong> <%= format_date(post.created_at, "short", true) %></li>
+          <li><strong>Status:</strong>
+          <% if post.draft == 1 %>
+            <%= "Draft" %>
+          <% else %>
+            <%= "Published" %>
+          <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
 <%= will_paginate @posts %>
 <% else %>
 <p>There are no posts yet.</p>
