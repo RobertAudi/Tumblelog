@@ -1,6 +1,6 @@
 class Admin::PostsController < Admin::BaseController
   def index
-    @posts = Post.paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
+    @posts = Post.order("created_at DESC").page(params[:page]).per(10)
     @title = "Posts"
   end
 

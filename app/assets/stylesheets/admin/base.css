@@ -103,6 +103,34 @@ section#main-content
 {
 }
 
+/* Pagination */
+nav.pagination
+{
+  text-align: center;
+}
+nav.pagination span
+{
+  margin: 0 5px;
+}
+nav.pagination span.page a
+{
+  border: 1px solid #666;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+nav.pagination span.page a:hover
+{
+  background-color: #ddd;
+}
+nav.pagination span.current
+{
+  border: 1px solid #666;
+  padding: 5px 6px 5px 10px;
+  margin-right: 9px;
+  background-color: #222;
+  color: #eee;
+}
+
 /* Debug Dump */
 .debug_dump
 {

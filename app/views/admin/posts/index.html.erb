@@ -50,7 +50,7 @@
       </div>
     </div>
   <% end %>
-<%= will_paginate @posts %>
+<%= paginate @posts, left: 3, right: 3 %>
 <% else %>
 <p>There are no posts yet.</p>
 <% end %>
