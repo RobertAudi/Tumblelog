@@ -16,7 +16,7 @@
       <div class="post">
         <% if post.post_type == "text" %>
           <h2 class="post-title"><%= post.title %></h2>
-          <div class="post-content"><%= post.body %></div>
+          <div class="post-content"><%= truncate(post.body, length: 2000) %></div>
         <% elsif post.post_type == "image" %>
           <%= image_tag post.image_url(:thumb).to_s %>
         <% end %>
