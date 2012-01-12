@@ -3,10 +3,10 @@
 
 <section id="new-posts" class="clearfix">
   <ul>
-    <li><%= link_to "Text",  admin_new_post_path("text") %></li>
-    <li><%= link_to "Image", admin_new_post_path("image") %></li>
-    <li><%= link_to "Quote", admin_new_post_path("quote") %></li>
-    <li><%= link_to "Link",  admin_new_post_path("link") %></li>
+    <li><%= link_to "Text",  admin_new_post_path("text"),  id:  "new-text-post", title: "Text"  %></li>
+    <li><%= link_to "Image", admin_new_post_path("image"), id: "new-image-post", title: "Image" %></li>
+    <li><%= link_to "Quote", admin_new_post_path("quote"), id: "new-quote-post", title: "Quote" %></li>
+    <li><%= link_to "Link",  admin_new_post_path("link"),  id:  "new-link-post", title: "Link"  %></li>
   </ul>
 </section>
 

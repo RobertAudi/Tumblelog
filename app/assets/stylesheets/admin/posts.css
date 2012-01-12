@@ -12,35 +12,21 @@ section#new-posts ul li a
   display: block;
   float: left;
 
-  width: 83px;
-  height: 83px;
+  width: 48px;
+  height: 48px;
 
-  margin: 0 13px 20px 13px;
+  margin: 0 38px 0 38px;
+  padding-top: 55px;
+
   text-align: center;
-  text-indent: 0px;
   text-decoration: none;
-  border: 1px solid #3C3C3C;
-
-
-  /* Rounded Corners */
-  -webkit-border-radius: 24px;
-  -moz-border-radius: 24px;
-  border-radius: 24px;
-
-  /* Gradient */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #4A4A4A), color-stop(1.00, #2F2F2F));
-  background: -moz-linear-gradient(top, #4A4A4A 0.00%, #2F2F2F 100.00%);
-
-  /* Drop Shadow */
-  box-shadow: -0px 1px 3px #2E2E2E;
-  -webkit-box-shadow: -0px 1px 3px #2E2E2E;
-  -moz-box-shadow: -0px 1px 3px #2E2E2E;
-
-  /* Text Style */
-  color: #FFFFFF;
-  text-shadow: #4E4E4E -0px -1px 1px;
-  font: 24px/83px "Georgia";
+  font-weight: bold;
+  color: #000;
 }
+section#new-posts ul li a#new-text-post  { background: url("../text.png")  center top no-repeat; }
+section#new-posts ul li a#new-image-post { background: url("../image.png") center top no-repeat; }
+section#new-posts ul li a#new-quote-post { background: url("../quote.png") center top no-repeat; }
+section#new-posts ul li a#new-link-post  { background: url("../link.png")  center top no-repeat; }
 section#new-posts ul li:first-child a
 {
   margin-left: 0;
@@ -53,6 +39,7 @@ section#new-posts ul li a:active
 {
   position: relative;
   top: 1px;
+  padding-top: 54px;
 }
 
 section.quote-post q
