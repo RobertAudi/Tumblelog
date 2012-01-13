@@ -12,45 +12,9 @@
 
 <% if @posts.any? %>
   <% @posts.each do |post| %>
-    <div id="post-<%= post.id %>" class="post-container">
-      <div class="post">
-        <% if post.post_type == "text" %>
-          <h2 class="post-title"><%= post.title %></h2>
-          <div class="post-content"><%= markdown(truncate(post.body, length: 2000)) %></div>
-        <% elsif post.post_type == "image" %>
-          <%= image_tag post.image_url(:thumb).to_s %>
-        <% end %>
-
-      </div>
-      <div class="post-meta">
-        <ul class="post-controls clearfix">
-          <%# Show the Delete link only to admins %>
-          <% if admin? %>
-            <li><%= link_to "Delete", admin_post_path(post),
-                      method: :delete,
-                      confirm: "Are you sure you want to delete the post: #{post.title}",
-                      title: "Delete post: #{post.title}",
-                      class: "button" %>
-            </li>
-          <% end %>
-          <li><%= link_to "Edit", edit_admin_post_path(post), class: "button" %></a></li>
-        </ul>
-        <ul class="post-infos">
-          <li><strong>Author:</strong> <%= post.user.username %></li>
-          <li><strong>Created on:</strong> <%= format_date(post.created_at, "short", true) %></li>
-          <li><strong>Last modified:</strong> <%= format_date(post.created_at, "short", true) %></li>
-          <li><strong>Status:</strong>
-          <% if post.draft == 1 %>
-            <%= "Draft" %>
-          <% else %>
-            <%= "Published" %>
-          <% end %>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <%= render 'index_post', :post => post %>
   <% end %>
-<%= paginate @posts, left: 3, right: 3 %>
+  <%= paginate @posts, left: 3, right: 3 %>
 <% else %>
-<p>There are no posts yet.</p>
+  <p>There are no posts yet.</p>
 <% end %>
