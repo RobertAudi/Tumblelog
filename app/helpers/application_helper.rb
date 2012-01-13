@@ -21,8 +21,11 @@ module ApplicationHelper
       time = include_time ? " %I:%M %p" : ""
       date.strftime("%D#{time}")
     else
-      
+      # FIXME: Do something...
     end
   end
 
+  def markdown(text)
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(text).html_safe
+  end
 end

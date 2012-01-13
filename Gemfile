@@ -7,6 +7,7 @@ gem 'kaminari', '0.13.0'
 gem 'fog', '1.1.2'
 gem 'rmagick', '2.13.1'
 gem 'carrierwave', '0.5.8'
+gem 'redcarpet', '2.0.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
