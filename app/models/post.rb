@@ -68,12 +68,6 @@ class Post < ActiveRecord::Base
     elsif post_type == "link"
       # NOTE: Not yet implemented
       nil
-    elsif post_type == "audio"
-      # NOTE: Not yet implemented
-      nil
-    elsif post_type == "video"
-      # NOTE: Not yet implemented
-      nil
     end
   end
 
@@ -86,12 +80,6 @@ class Post < ActiveRecord::Base
       "quote_form"
     elsif post_type == "link"
       "link_form"
-    elsif post_type == "audio"
-      # NOTE: Not yet implemented
-      nil
-    elsif post_type == "video"
-      # NOTE: Not yet implemented
-      nil
     end
   end
 
