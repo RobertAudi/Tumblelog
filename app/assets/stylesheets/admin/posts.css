@@ -47,6 +47,7 @@ section#new-posts ul li a:active
 
 /*---------------------------------------------------------*/
 
+/* Posts Index */
 div.post-container
 {
   position: relative;
@@ -83,13 +84,19 @@ div.post-container:first-child
 {
   margin-top: 0;
 }
-
 div.post-container div.post
 {
   width: 680px;
   margin-bottom: 20px;
 }
-
+div.post-container div.post div.post-content pre
+{
+  overflow-x: auto;
+}
+div.post-container div.post p.read-more
+{
+  margin-top: 15px;
+}
 div.post-container div.post-meta
 {
   position: absolute;
@@ -117,7 +124,6 @@ div.post-container div.post-meta ul.post-controls li a
 
   margin: 0 10px;
 }
-
 div.post-container div.post-meta ul.post-infos li
 {
   font-size: 85%;
