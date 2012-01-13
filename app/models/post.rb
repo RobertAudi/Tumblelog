@@ -61,12 +61,12 @@ class Post < ActiveRecord::Base
     if post_type == "text"
       title
     elsif post_type == "image"
-      # NOTE: Not yet implemented
+      # TODO: Complete this
       nil
     elsif post_type == "quote"
       quote
     elsif post_type == "link"
-      # NOTE: Not yet implemented
+      # TODO: Complete this
       nil
     end
   end
